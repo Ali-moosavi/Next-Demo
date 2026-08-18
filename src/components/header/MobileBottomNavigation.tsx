@@ -52,8 +52,7 @@ export default function MobileBottomNavigation(){
                  href={'#'}
                 >
                     <ShoppingCartOutlinedIcon fontSize="inherit" />
-
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">۲</span>
+                    
                     <span className="text-[10px] mt-1">سبد خرید</span>
                 </Link>
                 <Link
