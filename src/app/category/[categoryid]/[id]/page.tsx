@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import type { Product } from '@/redux/features/products/ProductsType'
+import { getProductById, getAllProducts } from '@/lib/data'
+import type { PRODUCT_TYPE } from '@/types/types'
 import ProductGallery from '@/components/single-product/PoductGallery'
 import StarRoundedIcon from '@mui/icons-material/StarRounded'
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
@@ -19,32 +20,17 @@ import ProductsColors from '@/components/single-product/ProductsColors'
 const faDigits = (value: number) =>
   new Intl.NumberFormat('fa-IR').format(value)
 
-async function getProduct(id: string): Promise<Product | null> {
-  try {
-    const res = await fetch(`http://localhost:3001/products/${id}`, {
-      next: { revalidate: 3600 },
-    })
-    if (!res.ok) return null
-    return res.json()
-  } catch {
-    return null
-  }
+async function getProduct(id: string): Promise<PRODUCT_TYPE | null> {
+  return getProductById(Number(id)) ?? null
 }
 
 export async function generateStaticParams() {
-  try {
-    const res = await fetch('http://localhost:3001/products')
-    if (!res.ok) return []
+  const products = getAllProducts()
 
-    const products: Product[] = await res.json()
-
-    return products.map((product) => ({
-      categoryid: String(product.Categoryid ?? '1'),
-      id: String(product.id),
-    }))
-  } catch {
-    return []
-  }
+  return products.map((product) => ({
+    categoryid: String(product.Categoryid ?? '1'),
+    id: String(product.id),
+  }))
 }
 
 export default async function SingleProduct({
