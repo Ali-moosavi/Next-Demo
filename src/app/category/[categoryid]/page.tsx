@@ -36,7 +36,7 @@ const collectCategoryIds = (node: CATEGORY_TYPE): number[] => {
 
 export async function generateStaticParams() {
   try {
-    const res = await fetch('http://localhost:3001/categories', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, {
       next: { revalidate: 3600 },
     })
     const categories: CATEGORY_TYPE[] = await res.json()
