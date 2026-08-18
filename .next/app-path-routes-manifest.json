@@ -1,0 +1,12 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/categories/route": "/api/categories",
+  "/api/filters/route": "/api/filters",
+  "/api/products/route": "/api/products",
+  "/category/[categoryid]/[id]/page": "/category/[categoryid]/[id]",
+  "/category/[categoryid]/page": "/category/[categoryid]",
+  "/category/page": "/category",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/"
+}
